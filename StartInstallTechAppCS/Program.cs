@@ -33,13 +33,13 @@ namespace StartInstallTechAppCS
             {
                 subPaths.Add(@"C:\Python27");
             }
-             
-            if (beforeSubPaths.Equals(subPaths))
+            
+            if (!(beforeSubPaths.ToArray() as IStructuralEquatable).Equals(subPaths.ToArray(), EqualityComparer<string>.Default))
             {
-                Console.WriteLine(beforeSubPaths != subPaths);
+                //Console.WriteLine((beforeSubPaths.ToArray() as IStructuralEquatable).Equals(subPaths.ToArray(), EqualityComparer<string>.Default));
                 editor.SetEnvironmentVariableValue("path", string.Join(";", subPaths.ToArray()), EnvironmentVariableTarget.Machine);
             }
-
+            
             subPaths.Sort();
             foreach (var path in subPaths)
             {
