@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using ThomasITServices;
+using System.Collections;
 
 namespace StartInstallTechAppCS
 {
@@ -7,7 +9,7 @@ namespace StartInstallTechAppCS
     {
         static void Main(string[] args)
         {
-            //EVEditor editor = new EVEditor();
+            EVEditor editor = new EVEditor();
 
             //foreach (KeyValuePair<string, string> entry in editor.GetEnvironmentVariables())
             //{
@@ -15,7 +17,6 @@ namespace StartInstallTechAppCS
             //}
 
             //Console.ReadLine();
-            //EVEditor editor = new EVEditor();
 
             //foreach (KeyValuePair<string, string> entry in editor.GetEnvironmentVariablesByTarget(EnvironmentVariableTarget.Machine))
             //{
@@ -23,16 +24,32 @@ namespace StartInstallTechAppCS
             //}
 
             //Console.ReadLine();
-            EVEditor editor = new EVEditor();
+
             string machinePath = editor.GetEnvironmentVariableByName("path", EnvironmentVariableTarget.Machine);
             Char delimiter = ';';
-            string[] subPaths = machinePath.Split(delimiter);
+            ArrayList beforeSubPaths = new ArrayList(machinePath.Split(delimiter));
+            ArrayList subPaths = new ArrayList(machinePath.Split(delimiter));
+            if (!subPaths.Contains(@"C:\Python27"))
+            {
+                subPaths.Add(@"C:\Python27");
+            }
+             
+            if (beforeSubPaths.Equals(subPaths))
+            {
+                Console.WriteLine(beforeSubPaths != subPaths);
+                editor.SetEnvironmentVariableValue("path", string.Join(";", subPaths.ToArray()), EnvironmentVariableTarget.Machine);
+            }
+
+            subPaths.Sort();
             foreach (var path in subPaths)
             {
                 Console.WriteLine(path);
             }
-            
             Console.ReadLine();
+            
+
+            //Console.WriteLine(string.Join(";", subPaths.ToArray()));
+            //Console.ReadLine();
         }
     }
 }

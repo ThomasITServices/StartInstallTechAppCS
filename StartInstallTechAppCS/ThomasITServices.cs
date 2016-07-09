@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security;
 using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 namespace ThomasITServices
 {
@@ -474,17 +475,18 @@ namespace ThomasITServices
         /// method for getting all available environment variables
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, string> GetEnvironmentVariables()
+        public ConcurrentDictionary<string, string> GetEnvironmentVariables()
         {
             try
             {
                 //dictionary object to hold the key/value pairs
-                Dictionary<string, string> variables = new Dictionary<string, string>();
+                ConcurrentDictionary<string, string> variables = new ConcurrentDictionary<string, string>();
 
                 //loop through the list and add to our dictionary list
                 Parallel.ForEach<DictionaryEntry>(Environment.GetEnvironmentVariables().OfType<DictionaryEntry>(), entry =>
                 {
-                    variables.Add(entry.Key.ToString(), entry.Value.ToString());
+                    
+                    variables.GetOrAdd(entry.Key.ToString(), entry.Value.ToString());
                 });
 
                 return variables;
@@ -504,15 +506,15 @@ namespace ThomasITServices
         /// </summary>
         /// <param name="target">the EnvironmentVariableTarget we want the variables for</param>
         /// <returns></returns>
-        public Dictionary<string, string> GetEnvironmentVariablesByTarget(EnvironmentVariableTarget target)
+        public ConcurrentDictionary<string, string> GetEnvironmentVariablesByTarget(EnvironmentVariableTarget target)
         {
             try
             {
-                Dictionary<string, string> variables = new Dictionary<string, string>();
+                ConcurrentDictionary<string, string> variables = new ConcurrentDictionary<string, string>();
 
                 Parallel.ForEach<DictionaryEntry>(Environment.GetEnvironmentVariables(target).OfType<DictionaryEntry>(), entry =>
                 {
-                    variables.Add(entry.Key.ToString(), entry.Value.ToString());
+                    variables.GetOrAdd(entry.Key.ToString(), entry.Value.ToString());
                 });
 
                 return variables;
@@ -591,7 +593,7 @@ namespace ThomasITServices
                 else
                     Environment.SetEnvironmentVariable(variable, value, target);
 
-                Console.WriteLine(string.Format("The environment variable {0} has been deleted", variable));
+                Console.WriteLine(string.Format("The environment variable \"{0}\" at {1} level has been updated", variable,target.ToString()));
 
             }
             catch (SecurityException ex)
