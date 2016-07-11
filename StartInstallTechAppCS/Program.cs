@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using ThomasITServices;
-using System.Collections;
+using System.Threading;
 
 namespace StartInstallTechAppCS
 {
@@ -9,47 +8,19 @@ namespace StartInstallTechAppCS
     {
         static void Main(string[] args)
         {
-            EVEditor editor = new EVEditor();
+            string[] paths = { @"K:\PROD\WNT\LIB", @"C:\PERL\V510\BIN", @"C:\LOCALAPPS\BIN", @"K:\PROD\SHARE\BIN", @"K:\PROD\WNT\BIN" };
+            SetTechAppsENV.Add("path", paths, EnvironmentVariableTarget.Machine);
 
-            //foreach (KeyValuePair<string, string> entry in editor.GetEnvironmentVariables())
-            //{
-            //    Console.WriteLine(entry.Key + " - " + entry.Value);
-            //}
-
-            //Console.ReadLine();
-
-            //foreach (KeyValuePair<string, string> entry in editor.GetEnvironmentVariablesByTarget(EnvironmentVariableTarget.Machine))
-            //{
-            //    Console.WriteLine(entry.Key + " - " + entry.Value);
-            //}
-
-            //Console.ReadLine();
-
-            string machinePath = editor.GetEnvironmentVariableByName("path", EnvironmentVariableTarget.Machine);
-            Char delimiter = ';';
-            ArrayList beforeSubPaths = new ArrayList(machinePath.Split(delimiter));
-            ArrayList subPaths = new ArrayList(machinePath.Split(delimiter));
-            if (!subPaths.Contains(@"C:\Python27"))
-            {
-                subPaths.Add(@"C:\Python27");
-            }
+            NetworkDrive.SetDrive("K:", @"\\utcapp.com\utas_apps");
             
-            if (!(beforeSubPaths.ToArray() as IStructuralEquatable).Equals(subPaths.ToArray(), EqualityComparer<string>.Default))
-            {
-                //Console.WriteLine((beforeSubPaths.ToArray() as IStructuralEquatable).Equals(subPaths.ToArray(), EqualityComparer<string>.Default));
-                editor.SetEnvironmentVariableValue("path", string.Join(";", subPaths.ToArray()), EnvironmentVariableTarget.Machine);
-            }
-            
-            subPaths.Sort();
-            foreach (var path in subPaths)
-            {
-                Console.WriteLine(path);
-            }
-            Console.ReadLine();
-            
+            Installer.Start("Goodrich", "goodrich",@"K:\");
+            Installer.Start("BTA", "bta", @"K:\");
+            //Installer.Start("IP config", "ipconfig", @"K:\");
 
-            //Console.WriteLine(string.Join(";", subPaths.ToArray()));
-            //Console.ReadLine();
+
+            Thread.Sleep(2000);
+            Console.Read();
+            
         }
     }
 }
