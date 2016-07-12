@@ -216,10 +216,10 @@ namespace ThomasITServices
                 if (!(beforeSubPaths.ToArray() as IStructuralEquatable).Equals(subPaths.ToArray(), EqualityComparer<string>.Default))
                 {
                     //Console.WriteLine((beforeSubPaths.ToArray() as IStructuralEquatable).Equals(subPaths.ToArray(), EqualityComparer<string>.Default));
-                    editor.SetEnvironmentVariableValue("path", string.Join(";", subPaths.ToArray()), EnvironmentVariableTarget.Machine);
+                    editor.SetEnvironmentVariableValue("path", string.Join(";", subPaths.ToArray()), this.Machine);
                 }
 
-            string afterMachinePath = editor.GetEnvironmentVariableByName("path", EnvironmentVariableTarget.Machine);
+            string afterMachinePath = editor.GetEnvironmentVariableByName("path", this.Machine);
             ArrayList afterSubPaths = new ArrayList(afterMachinePath.Split(delimiter));
             afterSubPaths.Sort();
             foreach (var path in afterSubPaths)
