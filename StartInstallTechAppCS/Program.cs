@@ -13,12 +13,12 @@ namespace StartInstallTechAppCS
 
             NetworkDrive.SetDrive("K:", @"\\utcapp.com\utas_apps");
             
-            Installer.Start("Goodrich", "goodrich",@"K:\");
-            Installer.Start("BTA", "bta", @"K:\");
-            //Installer.Start("IP config", "ipconfig", @"K:\");
+            //Installer.Start("Goodrich", "goodrich",@"K:\");
+            //Installer.Start("BTA", "bta", @"K:\");
+            Installer.Start("IP config", "ipconfig", @"K:\");
 
 
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
             Console.Read();
             
         }

@@ -69,10 +69,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThomasITServicesIO.cs" />
     <Compile Include="ThomasITServicesDrives.cs" />
     <Compile Include="ThomasITServicesInstaller.cs" />
+    <Compile Include="ThomasITServicesReg.cs" />
     <Compile Include="ThomasITServicesSetENV.cs" />
-    <Compile Include="ThomasITServices.cs" />
+    <Compile Include="ThomasITServicesShortCut.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
