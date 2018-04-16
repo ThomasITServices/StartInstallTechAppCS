@@ -69,12 +69,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThomasITServicesIO.cs" />
-    <Compile Include="ThomasITServicesDrives.cs" />
-    <Compile Include="ThomasITServicesInstaller.cs" />
-    <Compile Include="ThomasITServicesReg.cs" />
-    <Compile Include="ThomasITServicesSetENV.cs" />
-    <Compile Include="ThomasITServicesShortCut.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -102,6 +96,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThomasITServices_Library\ThomasITServices_Library.csproj">
+      <Project>{254ab4e1-21e7-4e08-b95e-5216c36b7971}</Project>
+      <Name>ThomasITServices_Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

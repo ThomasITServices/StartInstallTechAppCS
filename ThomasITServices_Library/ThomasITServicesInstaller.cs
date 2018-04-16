@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace ThomasITServices
 {
-    class VarForInstaller
+    public class VarForInstaller
     {
 
         private string currentPath = Environment.CurrentDirectory;
@@ -61,7 +61,7 @@ namespace ThomasITServices
 
     }
 
-    class Installer : VarForInstaller
+   public class Installer : VarForInstaller
     {
         public Installer() { }
         internal Installer(string AppName, string FileName)

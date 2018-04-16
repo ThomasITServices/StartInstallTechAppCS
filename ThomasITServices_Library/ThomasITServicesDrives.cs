@@ -4,7 +4,7 @@ using System.IO;
 
 namespace ThomasITServices
 {
-    class NetworkDrive
+    public class NetworkDrive
     {
 
         private string DriveName { set; get; }

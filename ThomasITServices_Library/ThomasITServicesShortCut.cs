@@ -3,7 +3,7 @@ using IWshRuntimeLibrary;
 
 namespace ThomasITServices
 {
-    class AddShortCut
+   public  class AddShortCut
     {
         string targetPath;
         string iconLocation = @"%SystemRoot%\system32\imageres.dll,3";

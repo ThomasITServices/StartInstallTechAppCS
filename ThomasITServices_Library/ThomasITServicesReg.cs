@@ -3,7 +3,7 @@ using System;
 
 namespace ThomasITServices
 {
-    class VarForRegistry
+    public class VarForRegistry
     {
         string subKeyPath;
         string keyName;
@@ -43,7 +43,7 @@ namespace ThomasITServices
         }
     }
 
-    class HKLMEditor : VarForRegistry
+   public class HKLMEditor : VarForRegistry
     {
         HKLMEditor(string LMSubKey, string KeyName, string KeyValue)
         {

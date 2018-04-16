@@ -3,7 +3,7 @@ using System.IO;
 
 namespace ThomasITServices
 {
-    class VarFromTo
+    public class VarFromTo
     {
         string sourcePath;
         string destinationPath;
@@ -47,7 +47,7 @@ namespace ThomasITServices
         }
     }
 
-    class CopyTo : VarFromTo
+   public class CopyTo : VarFromTo
     {
         public CopyTo() { }
         public CopyTo(string SourcePath, string DestinationPath)
@@ -115,7 +115,7 @@ namespace ThomasITServices
         }
     }
 
-    class DeleteFrom : VarFromTo
+   public class DeleteFrom : VarFromTo
     {
         public DeleteFrom() { }
         public DeleteFrom(string SourcePath)
